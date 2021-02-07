@@ -1,0 +1,130 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    int count(1), ceiling(3);
+    bool done(false);
+    char answer;
+    const char YES('Y'), NO('N');
+
+    cout << "Welcome to 'What's That Northeastern Building?!'" << endl;
+    cout << "Choose a building from the list below and remember it in your head." << endl;
+    cout << "I'll try to guess it in" << ceiling << "or fewer tries!" << endl;
+    cout << "East Village     Snell Library        Curry Center" << endl;
+    cout << "Cabot Center    International Village   West Village" << endl;
+    cout << "Are you ready? (y/n)" << endl;
+    cin >> answer;
+    switch (toupper(answer)) {
+        case YES:
+            while (!done) {
+                cout << "Are you thinking of the Curry Center?" << endl;
+                cin >> answer;
+                switch (toupper(answer)) {
+                    case YES:
+                        cout << "I guessed it in " << count << " tries." << endl;
+                        done = true;
+                        break;
+                    case NO:
+                        ++count;
+                        if (count >= ceiling) {
+                            cout << "I didn't guess it in time. You win!" << endl;
+                            done = true;
+                        } else {
+                            cout << "Does the building provide housing? " << endl;
+                            cin >> answer;
+                            switch (toupper(answer)) {
+                                case YES:
+                                    cout << "Are you thinking of the West Village?" << endl;
+                                    cin >> answer;
+                                    switch (toupper(answer)) {
+                                        case YES:
+                                            cout << "I guessed it in " << count << " tries." << endl;
+                                            done = true;
+                                            break;
+                                        case NO:
+                                            ++count;
+                                            cout << "Does the building serve food?" << endl;
+                                            cin >> answer;
+                                            switch (toupper(answer)) {
+                                                case YES:
+                                                    cout << "You're thinking of the International Village!" << endl;
+                                                    cout << "I guessed it in " << count << " tries." << endl;
+                                                    done = true;
+                                                    break;
+                                                case NO:
+                                                    cout << "You're thinking of the East Village!" << endl;
+                                                    cout << "I guessed it in " << count << " tries." << endl;
+                                                    done = true;
+                                                    break;
+                                                default:
+                                                    cout << "Sorry, that is not accepted as an answer. Try again."
+                                                         << endl;
+                                                    done = true;
+                                            }
+                                    }
+                                    break;
+                                    break;
+                                case NO:
+                                    cout << "Are you thinking of the Snell Library?" << endl;
+                                    cin >> answer;
+                                    switch (toupper(answer)) {
+                                        case YES:
+                                            cout << "I guessed it in " << count << " tries." << endl;
+                                            done = true;
+                                            break;
+                                        case NO:
+                                            ++count;
+                                            cout << "Are you thinking of the Cabot Center?" << endl;
+                                            cin >> answer;
+                                            switch (toupper(answer)) {
+                                                case YES:
+                                                    cout << "I guessed it in " << count << " tries." << endl;
+                                                    done = true;
+                                                    break;
+                                                case NO:
+                                                    cout
+                                                            << "Sorry there are no possible buildings left that fit the answers you gave. Please try again."
+                                                            << endl;
+                                            }
+
+
+                                    }
+                                    break;
+                                default:
+                                    cout << "Sorry, that is not accepted as an answer. Try again." << endl;
+                                    done = true;
+                            }
+                        }
+                        break;
+                    default:
+                        cout << "Sorry, that is not accepted as an answer. Try again." << endl;
+                        done = true;
+                }
+                break;
+                case NO:
+                    cout << "That's alright. Try again when you're ready or come back anytime." << endl;
+            }
+            done = true;
+            break;
+        default:
+            cout << "Sorry I'm not sure what " << answer << " means. Please try again and respond with <y> or <n>."
+                 << endl;
+
+    }
+    cout << "Do you want to play again?" << endl;
+    cin >> answer;
+    switch (toupper(answer)) {
+        case YES:
+            done = false;
+            break;
+        case NO:
+            cout << "Hope you had fun and have a nice day!" << endl;
+            done = true;
+            break;
+        default:
+            cout << "Sorry, that is not accepted as an answer. Try again." << endl;
+            done = true;
+    }
+    return 0;
+}
